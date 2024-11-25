@@ -15,6 +15,15 @@ if (isset($_SESSION['usuario'])) {
 
   $proceso = isset($estado);
 ?>
+<body data-context="registroEstado">
+<!-- Mostrar alerta de error (si existe el parámetro 'error' en la URL) -->
+<?php if (isset($_GET['error'])): ?>
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <strong>Error!</strong> <?php echo htmlspecialchars($_GET['error']); ?>
+        <!-- Botón de cierre manual con evento para redirigir -->
+        <button type="button" class="btn-close" id="closeButton" aria-label="Close">Aceptar</button>
+    </div>
+<?php endif; ?>
 
   <!--Formulario de registro de estados-->
 
@@ -46,9 +55,9 @@ if (isset($_SESSION['usuario'])) {
      Cancelar
       <img src="../Vista/img/cancelar.png" alt="Cancelar" style="width: 30px; height: 30px;">
     </button>
-
-
+<script src="../Controlador/js/validaciones.js"></script>
   </div>
+</body>
 <?php
 } else {
   header("Location:login.php");

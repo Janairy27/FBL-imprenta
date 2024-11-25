@@ -65,15 +65,20 @@ class controladorEstado{
             $estado = $_POST['estado'];
             $id = isset($_POST['id']) ? $_POST['id'] : null;
             
-            if($this->validarEstado($estado)){
-                header("Location: ../Vista/registroEstado.php?error=Estado+existente");
-                exit;
-            }
+          
 
             if(isset($_POST['id']) && !empty($_POST['id']) ){
                 $id = $_POST['id'];
+                if($this->validarEstado($estado)){
+                    header("Location: ../Controlador/controladorEstado.php?accion=actualizar&id=$id&error=Estado+existente");
+                    exit;
+                }
                 $this->actualizarEstado($id, $estado);
             }else{
+                if($this->validarEstado($estado)){
+                    header("Location: ../Vista/registroEstado.php?error=Estado+existente");
+                    exit;
+                }
                 /**Se llama a la funcion de crear el estado */
                 $this->crearEstado($estado);
         

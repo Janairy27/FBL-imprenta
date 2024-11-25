@@ -33,7 +33,12 @@ if (isset($_SESSION['usuario'])) {
         exit;
     }
 ?>
-
+<?php if (isset($_GET['error'])): ?>
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <strong>Error:</strong> <?php echo htmlspecialchars($_GET['error']); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">Aceptar</button>
+    </div>
+<?php endif; ?>
     <!--Vista con el formulario para editar estado-->
     <div>
         <div class="bloque">
@@ -55,10 +60,11 @@ if (isset($_SESSION['usuario'])) {
                     <img src="../Vista/img/cancelar.png" alt="Cancelar" style="width: 30px; height: 30px;">
                     Cancelar</button>
             </form>
-            <script src="../Controlador/js/validaciones.php"></script>
-            </form>
+
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <?php
 } else {
     header("Location:login.php");

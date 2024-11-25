@@ -1065,6 +1065,9 @@ document.addEventListener("DOMContentLoaded", function () {
         case "registroDetalle":
           window.location.href = "../Vista/registroDetalle.php";
           break;
+          case "registroEstado":
+          window.location.href = "../Vista/registroEstado.php";
+          break;
         case "registroUsuario":
           window.location.href = "../Vista/registroUsuario.php";
           break;
