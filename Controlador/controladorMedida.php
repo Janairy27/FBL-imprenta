@@ -77,12 +77,6 @@ class controladorMedida
 
             $id = isset($_POST['id']) ? $_POST['id'] : null;
 
-            if ($this->medida->validarMedida($largo, $ancho)) {
-                // Redirigir con el mensaje de error en la URL
-                header("Location: ../Vista/registroMedida.php?error=Medida+ya+existente");
-                exit;
-            }
-
 
             if (isset($_POST['id']) && !empty($_POST['id'])) {
                 $id = $_POST['id'];
