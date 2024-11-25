@@ -89,14 +89,19 @@ class controladorBaja{
                 $motivo = $_POST['motivo'];
                 $idinsumos = $_POST['idinsumos'];
                 $idempleado = $_POST['idempleado'];
-                if ($cantidad <= 0) {
-                    header("Location: ../Vista/registroBaja.php?error=La+cantidad+debe+ser+mayor+a+cero");
-                    exit;
-                }
+                
                 if(isset($_POST['id']) && !empty($_POST['id']) ){
                     $id = $_POST['id'];
+                    if ($cantidad <= 0) {
+                        header("Location: ../Controlador/Baja.php?accion=actualizar&id=$id&error=La+cantidad+debe+ser+mayor+a+cero");
+                        exit;
+                    }
                     $this->actualizarBaja($id, $cantidad,$fechabaja,$motivo, $idinsumos, $idempleado);
                 }else{
+                    if ($cantidad <= 0) {
+                        header("Location: ../Vista/registroBaja.php?error=La+cantidad+debe+ser+mayor+a+cero");
+                        exit;
+                    }
                     $this->crearBaja($cantidad,$fechabaja,$motivo, $idinsumos, $idempleado);
              
                 }
