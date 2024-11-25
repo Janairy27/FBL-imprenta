@@ -1044,6 +1044,9 @@ document.addEventListener("DOMContentLoaded", function () {
         case "registroEmpleado":
           window.location.href = "../Vista/registroEmpleado.php";
           break;
+          case "editarEmpleado":
+            window.location.href = "../Vista/editarEmpleado.php";
+            break;
         case "registroGrosor":
           window.location.href = "../Vista/registroGrosor.php";
           break;

@@ -35,6 +35,16 @@ if (isset($_SESSION['usuario'])) {
     }
 ?>
 
+<body data-context="editarEmpleado">
+<!-- Mostrar alerta de error (si existe el parámetro 'error' en la URL) -->
+<?php if (isset($_GET['error'])): ?>
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <strong>Error!</strong> <?php echo htmlspecialchars($_GET['error']); ?>
+        <!-- Botón de cierre manual con evento para redirigir -->
+        <button type="button" class="btn-close" id="closeButton" aria-label="Close">Aceptar</button>
+    </div>
+<?php endif; ?>
+
     <!--Vista con el formulario para editar empleado-->
     <div>
         <div class="bloque">
@@ -80,10 +90,11 @@ if (isset($_SESSION['usuario'])) {
                     Cancelar</button>
             </form>
 
-            <script src="js/validaciones.php"></script>
+            <script src="../Controlador/js/validaciones.js"></script>
             </form>
         </div>
     </div>
+</body>
 <?php
 } else {
     header("Location:login.php");

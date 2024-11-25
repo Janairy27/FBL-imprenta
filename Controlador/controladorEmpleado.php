@@ -61,6 +61,9 @@ class controladorEmpleado{
     public function validarCorreo($corr){
         return $this->empleado->obtenerCorreo($corr);
     }
+    public function validarEmpleado($nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol){
+        return $this->empleado->validarEmpleado($nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
+    }
 
 
     /**Funcion para procesar los datos recibidos del formulario */
@@ -89,9 +92,10 @@ class controladorEmpleado{
                 header("Location: ../Vista/registroEmpleado.php?error=El+rol+es+incorrecto,+debe+de,+ser+Empleado+o+Practicante");
                 exit;
             }
-
+           
             if(isset($_POST['id']) && !empty($_POST['id']) ){
                 $id = $_POST['id'];
+                
                 $this->actualizarEmpleado($id, $nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
             }else{
                 /**Se llama a la funcion de crear el empleado */

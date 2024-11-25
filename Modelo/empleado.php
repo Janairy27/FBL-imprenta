@@ -95,8 +95,34 @@
         public function obtenerCorreo($corr){
             $sql = "select correo from empleado where correo = '$corr'; ";
             $exec = mysqli_query($this->conn,$sql);
-            return mysqli_fetch_assoc($exec);
-        }
+            return mysqli_fetch_assoc($exec); 
+               }
+
+               public function validarEmpleado($nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol) {
+                // Escapar los valores para evitar inyección SQL
+                $nombre = mysqli_real_escape_string($this->conn, $nombre);
+                $apaterno = mysqli_real_escape_string($this->conn, $apaterno);
+                $amaterno = mysqli_real_escape_string($this->conn, $amaterno);
+                $fecha = mysqli_real_escape_string($this->conn, $fecha);
+                $direccion = mysqli_real_escape_string($this->conn, $direccion);
+                $telefono = mysqli_real_escape_string($this->conn, $telefono);
+                $correo = mysqli_real_escape_string($this->conn, $correo);
+                $rol = mysqli_real_escape_string($this->conn, $rol);
+            
+                // Consulta para verificar la existencia
+                $query = "SELECT COUNT(*) as total 
+                          FROM empleado
+                          WHERE CONCAT( nomb,'|', apaterno,'|', amaterno, '|', fecnaci, '|', direccion, '|', telefono, '|',
+            correo,'|', rol) 
+                          = CONCAT('$nombre', '|', '$apaterno', '|', '$amaterno', '|', '$fecha','|', 
+                          '$direccion','|',$telefono,'|', '$correo','|','$rol');";
+                
+                $resultado = mysqli_query($this->conn, $query);
+            
+                // Verificar si existe al menos un registro con la misma combinación
+                $fila = mysqli_fetch_assoc($resultado);
+                return $fila['total'] > 0;
+            }
 
     }
 
