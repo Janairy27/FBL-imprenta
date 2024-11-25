@@ -16,6 +16,7 @@ $user = $_SESSION['usuario'];
 
 // Captura el ID pasado por la URL
 $id = $_GET['id'] ?? null;
+$error = $_GET['error'] ?? null;
 
 if (!$id) {
     echo "<p>Error: ID no proporcionado.</p>";

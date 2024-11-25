@@ -68,15 +68,21 @@ class controladorGrosor{
             $flexibilidad = $_POST['flexibilidad'];
             $id = isset($_POST['id']) ? $_POST['id'] : null;
             
-            if($this->validarGrosor($cantGrosor,$unidadMedida,$flexibilidad)){
-                header("Location: ../Vista/registroGrosor.php?error=Grosor+ya+existente");
-                exit;
-            }
-
+           
             if(isset($_POST['id']) && !empty($_POST['id']) ){
                 $id = $_POST['id'];
+                if($this->validarGrosor($cantGrosor,$unidadMedida,$flexibilidad)){
+                    header("Location: ../Controlador/controladorGrosor.php?accion=actualizar&id=$id&error=Grosor+existente");
+                    exit;
+                }
+    
                 $this->actualizarGrosor($id, $cantGrosor,$unidadMedida,$flexibilidad);
             }else{
+                if($this->validarGrosor($cantGrosor,$unidadMedida,$flexibilidad)){
+                    header("Location: ../Vista/registroGrosor.php?error=Grosor+ya+existente");
+                    exit;
+                }
+    
                 /**Se llama a la funcion de crear el empleado */
                 $this->crearGrosor($cantGrosor,$unidadMedida,$flexibilidad );
         

@@ -264,21 +264,29 @@ $idgrosor, $idmaterial,$idproveedor,$idmarca,$idsubmaterial);
                  $idmarca = $_POST['idmarca'];
                  $idsubmaterial = $_POST['idsubmaterial'];
              
-                 if ($this->insumo->validarInsumo($nomInsumo,$fechacompra,$fechauso, $cantidad,$rendimiento,
+                 
+                
+
+                if(isset($_POST['id']) && !empty($_POST['id']) ){
+                    $id = $_POST['id'];
+                    if ($this->insumo->validarInsumo($nomInsumo,$fechacompra,$fechauso, $cantidad,$rendimiento,
+                 $precio,$disponibilidad, $idubicacion, $idcolor, $idtransparencia,$idacabado,$idpresentacion,
+                 $idtipomedida,$idmedida,$idgrosor,$idmaterial,$idproveedor,$idmarca,$idsubmaterial)) {
+                    // Redirigir con el mensaje de error en la URL
+                    header("Location: ../Controlador/controladorInsumos.php?accion=actualizar&id=$id&error=Insumo+existente");
+                    exit;
+                }
+                    $this->actualizarInsumo($id,$nomInsumo,$fechacompra,$fechauso, $cantidad,$rendimiento,
+                    $precio,$disponibilidad, $idubicacion, $idcolor, $idtransparencia,$idacabado,$idpresentacion,
+                    $idtipomedida,$idmedida,$idgrosor,$idmaterial,$idproveedor,$idmarca,$idsubmaterial);
+                }else{
+                    if ($this->insumo->validarInsumo($nomInsumo,$fechacompra,$fechauso, $cantidad,$rendimiento,
                  $precio,$disponibilidad, $idubicacion, $idcolor, $idtransparencia,$idacabado,$idpresentacion,
                  $idtipomedida,$idmedida,$idgrosor,$idmaterial,$idproveedor,$idmarca,$idsubmaterial)) {
                     // Redirigir con el mensaje de error en la URL
                     header("Location: ../Vista/registroInsumo.php?error=Insumo+ya+existente");
                     exit;
                 }
-                
-
-                if(isset($_POST['id']) && !empty($_POST['id']) ){
-                    $id = $_POST['id'];
-                    $this->actualizarInsumo($id,$nomInsumo,$fechacompra,$fechauso, $cantidad,$rendimiento,
-                    $precio,$disponibilidad, $idubicacion, $idcolor, $idtransparencia,$idacabado,$idpresentacion,
-                    $idtipomedida,$idmedida,$idgrosor,$idmaterial,$idproveedor,$idmarca,$idsubmaterial);
-                }else{
                     /**Se llama a la funcion de crear el insumo */
                     $this->crearInsumo($nomInsumo,$fechacompra,$fechauso, $cantidad,$rendimiento,
                     $precio,$disponibilidad, $idubicacion, $idcolor, $idtransparencia,$idacabado,$idpresentacion,

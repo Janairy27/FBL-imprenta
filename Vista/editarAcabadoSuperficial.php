@@ -14,6 +14,7 @@ $user = $_SESSION['usuario'];
 
 // Captura y valida el ID pasado por la URL
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$error = $_GET['error'] ?? null;
 
 if (!$id) {
     echo "<p>Error: ID no proporcionado o inválido.</p>";

@@ -73,10 +73,7 @@ class controladorDetalle{
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
             $id = isset($_POST['id']) ? $_POST['id'] : null;
-            if(empty($_POST['descuento']) || empty($_POST['subtotal']) || empty($_POST['iva']) || empty($_POST['total']) || empty($_POST['serie'])){
-                header("Location: ../Vista/registroDetalle.php?error=Todos+los+campos+deben+de+estar+llenos");
-                exit;
-            }
+           
                 $descuento = $_POST['descuento'];
                 $subtotal = $_POST['subtotal'];
                 $iva = $_POST['iva'];
@@ -87,6 +84,10 @@ class controladorDetalle{
                     $id = $_POST['id'];
                     $this->actualizarDetalle($id, $descuento, $subtotal, $iva, $total, $serie);
                 }else{
+                    if(empty($_POST['descuento']) || empty($_POST['subtotal']) || empty($_POST['iva']) || empty($_POST['total']) || empty($_POST['serie'])){
+                        header("Location: ../Vista/registroDetalle.php?error=Todos+los+campos+deben+de+estar+llenos");
+                        exit;
+                    }
                     /**Se llama a la funcion de crear el detalle */
                     $this->crearDetalle($descuento, $subtotal, $iva, $total, $serie);
                 }
