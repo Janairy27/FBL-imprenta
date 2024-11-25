@@ -98,8 +98,9 @@
             return mysqli_fetch_assoc($exec); 
                }
 
-               public function validarEmpleado($nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol) {
+               public function validarEmpleado($id,$nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol) {
                 // Escapar los valores para evitar inyección SQL
+                $id = intval($id);
                 $nombre = mysqli_real_escape_string($this->conn, $nombre);
                 $apaterno = mysqli_real_escape_string($this->conn, $apaterno);
                 $amaterno = mysqli_real_escape_string($this->conn, $amaterno);
@@ -112,10 +113,10 @@
                 // Consulta para verificar la existencia
                 $query = "SELECT COUNT(*) as total 
                           FROM empleado
-                          WHERE CONCAT( nomb,'|', apaterno,'|', amaterno, '|', fecnaci, '|', direccion, '|', telefono, '|',
+                          WHERE CONCAT(idempleado,'|', nomb,'|', apaterno,'|', amaterno, '|', fecnaci, '|', direccion, '|', telefono, '|',
             correo,'|', rol) 
-                          = CONCAT('$nombre', '|', '$apaterno', '|', '$amaterno', '|', '$fecha','|', 
-                          '$direccion','|',$telefono,'|', '$correo','|','$rol');";
+                          = CONCAT($id,'|','$nombre', '|', '$apaterno', '|', '$amaterno', '|', '$fecha','|', 
+                          '$direccion','|','$telefono','|', '$correo','|','$rol');";
                 
                 $resultado = mysqli_query($this->conn, $query);
             

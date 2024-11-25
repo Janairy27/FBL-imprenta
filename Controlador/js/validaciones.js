@@ -1044,9 +1044,6 @@ document.addEventListener("DOMContentLoaded", function () {
         case "registroEmpleado":
           window.location.href = "../Vista/registroEmpleado.php";
           break;
-          case "editarEmpleado":
-            window.location.href = "../Vista/editarEmpleado.php";
-            break;
         case "registroGrosor":
           window.location.href = "../Vista/registroGrosor.php";
           break;
@@ -1071,6 +1068,8 @@ document.addEventListener("DOMContentLoaded", function () {
         case "registroUsuario":
           window.location.href = "../Vista/registroUsuario.php";
           break;
+        
+        
         // Agrega más casos según sea necesario
         default:
           console.error("Contexto desconocido:", context);
@@ -1109,4 +1108,4 @@ function validarFormulario() {
 }
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+//<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

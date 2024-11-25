@@ -61,8 +61,8 @@ class controladorEmpleado{
     public function validarCorreo($corr){
         return $this->empleado->obtenerCorreo($corr);
     }
-    public function validarEmpleado($nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol){
-        return $this->empleado->validarEmpleado($nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
+    public function validarEmpleado($id,$nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol){
+        return $this->empleado->validarEmpleado($id,$nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
     }
 
 
@@ -75,29 +75,33 @@ class controladorEmpleado{
             $fecha = $_POST['nacimiento'];
             $direccion = $_POST['direccion'];
             $telefono = $_POST['telefono'];
+            $correo = $_POST['correo'];
+            $rol = $_POST['rol'];
 
             $id = isset($_POST['id']) ? $_POST['id'] : null;
-            
-            if($this->validarTelefono($telefono)){
-                header("Location: ../Vista/registroEmpleado.php?error=Número+de+telefono+existente");
-                exit;
-            }
-            $correo = $_POST['correo'];
-            if($this->validarCorreo($correo)){
-                header("Location: ../Vista/registroEmpleado.php?error=Correo+electronico+existente");
-                exit;
-            }
-            $rol = $_POST['rol'];
-            if(!($rol =='Empleado' || $rol =='Representante' || $rol == 'Practicante')){
-                header("Location: ../Vista/registroEmpleado.php?error=El+rol+es+incorrecto,+debe+de,+ser+Empleado+o+Practicante");
-                exit;
-            }
-           
+
             if(isset($_POST['id']) && !empty($_POST['id']) ){
                 $id = $_POST['id'];
-                
+                if($this->validarEmpleado($id, $nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol)){
+                    header("Location: ../Controlador/controladorEmpleado.php?accion=actualizar&id=$id&error=Empleado+existente");
+                    exit;
+                }
                 $this->actualizarEmpleado($id, $nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
             }else{
+
+                if($this->validarTelefono($telefono)){
+                    header("Location: ../Vista/registroEmpleado.php?error=Número+de+telefono+existente");
+                    exit;
+                }
+                
+                if($this->validarCorreo($correo)){
+                    header("Location: ../Vista/registroEmpleado.php?error=Correo+electronico+existente");
+                    exit;
+                }
+                if(!($rol =='Empleado' || $rol =='Representante' || $rol == 'Practicante')){
+                    header("Location: ../Vista/registroEmpleado.php?error=El+rol+es+incorrecto,+debe+de,+ser+Empleado+o+Practicante");
+                    exit;
+                }
                 /**Se llama a la funcion de crear el empleado */
                 $this->crearEmpleado($nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
         
@@ -111,6 +115,8 @@ class controladorEmpleado{
     
         
 }
+
+
 
 
     /**Control de opciones de las funciones integradas en las vistas */
