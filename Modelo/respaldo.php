@@ -23,8 +23,7 @@ $copiaBD = $direccion . 'respaldo_' . date('Y-m-d_H-i-s') . '.sql';
 $cmd = "mysqldump -u $user -p$pass $db > $copiaBD";
 /**Ejecución del comando */
 exec($cmd, $output, $retorno);
-
-/**Validar que el respaldo se realizo de forma exitosa */
+/**Validar que el respaldo se realizo de forma exitosa y mostrar los mensajes correspondientes */
 if($retorno == 0){
     $message = "Respaldo realizado con éxito.";
     $message_type = "success";
