@@ -67,16 +67,24 @@ class controladorColor{
 
             $id = isset($_POST['id']) ? $_POST['id'] : null;
             
-            if($this->validarColor($nombre)){
-                header("Location: ../Vista/registroColor.php?error=El+color+ya+es+existente");
-                exit;
-                
-            }
-
+            
             if(isset($_POST['id']) && !empty($_POST['id']) ){
                 $id = $_POST['id'];
+                if($this->validarColor($nombre)){
+                    header("Location: ../Controlador/controladorColor.php?accion=actualizar&id=$id&error=Color+existente");
+                    exit;
+                    
+                }
+    
                 $this->actualizarColor($id, $nombre);
             }else{
+
+                if($this->validarColor($nombre)){
+                    header("Location: ../Vista/registroColor.php?error=El+color+ya+es+existente");
+                    exit;
+                    
+                }
+    
                 /**Se llama a la funcion de crear el colore */
                 $this->crearColor($nombre );
         
