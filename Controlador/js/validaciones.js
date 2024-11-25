@@ -1068,8 +1068,6 @@ document.addEventListener("DOMContentLoaded", function () {
         case "registroUsuario":
           window.location.href = "../Vista/registroUsuario.php";
           break;
-        
-        
         // Agrega más casos según sea necesario
         default:
           console.error("Contexto desconocido:", context);

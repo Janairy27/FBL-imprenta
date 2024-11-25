@@ -67,17 +67,23 @@ class controladorAcabadoSuperficial{
 
             $id = isset($_POST['id']) ? $_POST['id'] : null;
 
-            if ($this->acabado->validarAcabado($nombre)) {
-                // Redirigir con el mensaje de error en la URL
-                header("Location: ../Vista/registroAcabadoSuperficial.php?error=El+acabado+ya+es+existente");
-                exit;
-            }
-           
 
             if(isset($_POST['id']) && !empty($_POST['id']) ){
                 $id = $_POST['id'];
+                if ($this->acabado->validarAcabado($nombre)) {
+                    // Redirigir con el mensaje de error en la URL
+                    header("Location: ../Controlador/controladorAcabadoSuperficial.php?accion=actualizar&id=$id&error=Acabado+Superficial+existente");
+                    exit;
+                }
                 $this->actualizarAcabado($id, $nombre);
             }else{
+
+                if ($this->acabado->validarAcabado($nombre)) {
+                    // Redirigir con el mensaje de error en la URL
+                    header("Location: ../Vista/registroAcabadoSuperficial.php?error=El+acabado+ya+es+existente");
+                    exit;
+                }
+
                 /**Se llama a la funcion de crear el acabado */
                 $this->crearAcabado($nombre );
         
