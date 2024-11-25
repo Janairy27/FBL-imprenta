@@ -16,6 +16,8 @@ $user = $_SESSION['usuario'];
 
 // Captura y valida el ID pasado por la URL
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$l;
+    $error = $_GET['error'] ?? null;
 
 if (!$id) {
     echo "<p>Error: ID no proporcionado o inválido.</p>";
@@ -43,6 +45,12 @@ if ($stmt) {
 }
 ?>
 
+<?php if (isset($_GET['error'])): ?>
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <strong>Error:</strong> <?php echo htmlspecialchars($_GET['error']); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">Aceptar</button>
+    </div>
+<?php endif; ?>
 <!-- Formulario de actualización de proveedor -->
 <div>
     <div class="bloque">
@@ -88,8 +96,8 @@ if ($stmt) {
         </form>
     </div>
 </div>
-
-<script src="js/validaciones.php"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <?php
 } else {
     header("Location:login.php");

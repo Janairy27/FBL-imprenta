@@ -61,6 +61,9 @@ class controladorProveedor{
     public function validarCorreo($corr){
         return $this->proveedor->validarCorreo($corr);
     }
+    public function validarProveedor($nombre, $direccion,$contacto, $telefono, $correo ,$numCliente){
+        return $this->proveedor->validarProveedor($nombre, $direccion,$contacto, $telefono, $correo ,$numCliente);
+    }
 
 
     /**Funcion para procesar los datos recibidos del formulario */
@@ -74,7 +77,18 @@ class controladorProveedor{
             $correo = $_POST['correo'];
             $id = isset($_POST['id']) ? $_POST['id'] : null;
 
-            // Validaciones
+        
+            
+
+            if(isset($_POST['id']) && !empty($_POST['id']) ){
+                $id = $_POST['id'];
+                if($this->validarProveedor($nombre, $direccion,$contacto, $telefono, $correo ,$numCliente)){
+                    header("Location: ../Controlador/controladorProveedor.php?accion=actualizar&id=$id&error=Proveedor+existente");
+                    exit;
+                }
+                $this->actualizarProveedor($id, $nombre,  $direccion,$contacto, $telefono,$correo, $numCliente);
+            }else{
+                    // Validaciones
             if ($this->proveedor->validarTelefono($telefono)) {
                 header("Location: ../Vista/registrarProveedor.php?error=Telefono+existente");
                 exit;
@@ -85,12 +99,6 @@ class controladorProveedor{
                 exit;
             }
 
-            
-
-            if(isset($_POST['id']) && !empty($_POST['id']) ){
-                $id = $_POST['id'];
-                $this->actualizarProveedor($id, $nombre,  $direccion,$contacto, $telefono,$correo, $numCliente);
-            }else{
                 /**Se llama a la funcion de crear el proveedor*/
                 $this->crearProveedor($nombre, $direccion,$contacto, $telefono,$correo, $numCliente );
         

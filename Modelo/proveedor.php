@@ -72,6 +72,32 @@
             $exec = mysqli_query($this->conn,$sql);
             return mysqli_fetch_assoc($exec);
         }
+
+
+        public function validarProveedor($nombre, $direccion,$contacto, $telefono, $correo,$numCliente) {
+            // Escapar los valores para evitar inyección SQL
+
+            $nombre = mysqli_real_escape_string($this->conn, $nombre);
+            $direccion = mysqli_real_escape_string($this->conn, $direccion);
+            $contacto = mysqli_real_escape_string($this->conn, $contacto);
+            $telefono = mysqli_real_escape_string($this->conn, $telefono);
+            $correo = mysqli_real_escape_string($this->conn, $correo);
+            $numCliente = intval( $numCliente);
+            // Consulta para verificar la existencia
+            $query = "SELECT COUNT(*) as total 
+                      FROM proveedor
+                      WHERE CONCAT(Nomproveedor,'|', direccion,'|', contacto,  '|', telefono, '|',
+        correo,'|', NoCliente) 
+                      = CONCAT('$nombre', '|', '$direccion', '|', '$contacto', '|', '$telefono','|', 
+                      '$correo','|','$numCliente');";
+            
+            $resultado = mysqli_query($this->conn, $query);
+        
+            // Verificar si existe al menos un registro con la misma combinación
+            $fila = mysqli_fetch_assoc($resultado);
+            return $fila['total'] > 0;
+        }
+
         public function obtenerProveedorparaInsumos() {
             $sql = "select idproveedor, Nomproveedor as proveedor from proveedor";
             $result = mysqli_query($this->conn, $sql);
