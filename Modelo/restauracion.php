@@ -47,7 +47,9 @@ class Restauracion
             $this->agregarMensaje("El archivo de respaldo no existe: $archivoRespaldo");
             return;
         }
-
+        /**
+         * Traer los datos para la conexion a la base de datos
+         */
         $host = 'localhost';
         $user = 'root';
         $pass = '';
