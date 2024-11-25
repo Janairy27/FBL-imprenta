@@ -1,4 +1,4 @@
-<?php  include '../Vista/includes/header.php';
+<?php include '../Vista/includes/header.php';
 
 session_start();
 
@@ -6,13 +6,14 @@ $user = $_SESSION['usuario'];
 
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-    
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
 
-      <div class="bloque">
+
+    <div class="bloque">
         <h2>Listado de insumos</h1>
 
             <div class="contenedor-formulario">
@@ -98,10 +99,10 @@ if (isset($_SESSION['usuario'])) {
                                 <td><?php echo $insumo['proveedor'];  ?></td>
                                 <td><?php echo $insumo['marca'];  ?></td>
                                 <td><?php echo $insumo['submaterial'];  ?></td>
-                                
+
                             </tr>
                         <?php endforeach ?>
-                        <?php else: ?>
+                    <?php else: ?>
                         <tr>
                             <td colspan="19" class="text-center">No se encontraron insumos.</td>
                         </tr>
@@ -117,8 +118,8 @@ if (isset($_SESSION['usuario'])) {
     </div>
 
 
-     <?php
- }else {
-     header("Location: ../Vista/login.php");
- }
+<?php
+} else {
+    header("Location: ../Vista/login.php");
+}
 ?>

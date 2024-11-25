@@ -3,20 +3,24 @@
 
 require_once '../Modelo/insumo.php';
 
-class controladorReporteFechaInsumo{
+class controladorReporteFechaInsumo
+{
     private $insumo;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->insumo = new Insumo();
     }
 
-    public function reporteFechaInsumo($busqueda,$valor1,$valor2){
-        return $this->insumo->reporteFechaInsumo($busqueda,$valor1,$valor2);
+    public function reporteFechaInsumo($busqueda, $valor1, $valor2)
+    {
+        return $this->insumo->reporteFechaInsumo($busqueda, $valor1, $valor2);
     }
 
 
-    public function procesarBusqueda(){
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    public function procesarBusqueda()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $busqueda = $_POST['busqueda'];
             $valor1 = $_POST['valor1'];
             $valor2 = $_POST['valor2'];
@@ -26,20 +30,19 @@ class controladorReporteFechaInsumo{
     }
 }
 
-    if(isset($_GET['accion'])){
-        $controlador = new controladorReporteFechaInsumo();
+if (isset($_GET['accion'])) {
+    $controlador = new controladorReporteFechaInsumo();
 
-        switch($_GET['accion']){
-            case 'buscar':
-                $controlador->procesarBusqueda();
-                break;            
-            default:
-                header("Location: ../Vista/reporteFecha.php");
-                break;
-        }
-
+    switch ($_GET['accion']) {
+        case 'buscar':
+            $controlador->procesarBusqueda();
+            break;
+        default:
+            header("Location: ../Vista/reporteFecha.php");
+            break;
+    }
 }
-  
+
 
 
 

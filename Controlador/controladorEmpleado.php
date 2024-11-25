@@ -1,17 +1,20 @@
 <?php
+
 /**Llamada a nuestro archivo del modelo de empleados */
 require_once '../Modelo/empleado.php';
 
 /**Clase de empleado donde se haran las llamadas a todas las funciones integradas 
  * en el modelo de empleados
  */
-class controladorEmpleado{
+class controladorEmpleado
+{
     private $empleado;
 
     /**Asociación a la funcion de empleado, cada que se haga uso, se estara enlacando a la 
      * funcion de empleado que se encuentra en el modelo
      */
-    public function __construct(){
+    public function __construct()
+    {
         $this->empleado = new Empleado();
     }
 
@@ -20,33 +23,40 @@ class controladorEmpleado{
      * hara uso, en caso de requerir parametos, como id, nombre, etc., se le especifica el 
      * parametro a recibir
      */
-    public function listarEmpleados(){
+    public function listarEmpleados()
+    {
         return $this->empleado->obtenerEmpleados();
     }
 
-    public function crearEmpleado($nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol){
+    public function crearEmpleado($nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol)
+    {
         return $this->empleado->agregarEmpleado($nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
     }
 
-    public function buscarEmpleados($busqueda, $valor){
+    public function buscarEmpleados($busqueda, $valor)
+    {
         return $this->empleado->buscarEmpleadoPorCriterio($busqueda, $valor);
     }
 
-    public function actualizarEmpleado($id, $nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol){
+    public function actualizarEmpleado($id, $nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol)
+    {
         return $this->empleado->actualizarEmpleado($id, $nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
     }
 
-    public function eliminarEmpleado($id){
+    public function eliminarEmpleado($id)
+    {
         return $this->empleado->eliminarEmpleado($id);
     }
 
-    public function obtenerEmpleadoID($id){
+    public function obtenerEmpleadoID($id)
+    {
         return $this->empleado->obtenerEmpleadoID($id);
     }
 
     /**Función para procesar los datos de la busqueda */
-    public function procesarBusqueda(){
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    public function procesarBusqueda()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $busqueda = $_POST['busqueda'];
             $valor = $_POST['valor'];
             $resultados = $this->buscarEmpleados($busqueda, $valor);
@@ -54,21 +64,25 @@ class controladorEmpleado{
         }
     }
     /**Validaciones de correo, telefono y rol empresarial */
-    public function validarTelefono($tel){
+    public function validarTelefono($tel)
+    {
         return $this->empleado->obtenerTelefono($tel);
     }
 
-    public function validarCorreo($corr){
+    public function validarCorreo($corr)
+    {
         return $this->empleado->obtenerCorreo($corr);
     }
-    public function validarEmpleado($id,$nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol){
-        return $this->empleado->validarEmpleado($id,$nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
+    public function validarEmpleado($id, $nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol)
+    {
+        return $this->empleado->validarEmpleado($id, $nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
     }
 
 
     /**Funcion para procesar los datos recibidos del formulario */
-    public function procesarDatos(){
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    public function procesarDatos()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombre = $_POST['nombre'];
             $apaterno = $_POST['apaterno'];
             $amaterno = $_POST['amaterno'];
@@ -80,83 +94,72 @@ class controladorEmpleado{
 
             $id = isset($_POST['id']) ? $_POST['id'] : null;
 
-            if(isset($_POST['id']) && !empty($_POST['id']) ){
+            if (isset($_POST['id']) && !empty($_POST['id'])) {
                 $id = $_POST['id'];
-                if($this->validarEmpleado($id, $nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol)){
+                if ($this->validarEmpleado($id, $nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol)) {
                     header("Location: ../Controlador/controladorEmpleado.php?accion=actualizar&id=$id&error=Empleado+existente");
                     exit;
                 }
                 $this->actualizarEmpleado($id, $nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
-            }else{
+            } else {
 
-                if($this->validarTelefono($telefono)){
+                if ($this->validarTelefono($telefono)) {
                     header("Location: ../Vista/registroEmpleado.php?error=Número+de+telefono+existente");
                     exit;
                 }
-                
-                if($this->validarCorreo($correo)){
+
+                if ($this->validarCorreo($correo)) {
                     header("Location: ../Vista/registroEmpleado.php?error=Correo+electronico+existente");
                     exit;
                 }
-                if(!($rol =='Empleado' || $rol =='Representante' || $rol == 'Practicante')){
+                if (!($rol == 'Empleado' || $rol == 'Representante' || $rol == 'Practicante')) {
                     header("Location: ../Vista/registroEmpleado.php?error=El+rol+es+incorrecto,+debe+de,+ser+Empleado+o+Practicante");
                     exit;
                 }
                 /**Se llama a la funcion de crear el empleado */
                 $this->crearEmpleado($nombre, $apaterno, $amaterno, $fecha, $direccion, $telefono, $correo, $rol);
-        
             }
-            
+
             /**Redirigir al listado de empleados*/
             header("Location: ../Vista/buscarEmpleado.php");
             exit;
         }
     }
-    
-        
 }
 
 
 
 
-    /**Control de opciones de las funciones integradas en las vistas */
-    if(isset($_GET['accion'])){
-        $controlador = new controladorEmpleado();
+/**Control de opciones de las funciones integradas en las vistas */
+if (isset($_GET['accion'])) {
+    $controlador = new controladorEmpleado();
 
-        /**Menú de opciones que se quieran realizar */
-        switch($_GET['accion']){
-            case 'crear':
+    /**Menú de opciones que se quieran realizar */
+    switch ($_GET['accion']) {
+        case 'crear':
+            $controlador->procesarDatos();
+            /*header("Location: ../Vista/registroEmpleado.php");*/
+            break;
+        case 'buscar':
+            $controlador->procesarBusqueda();
+            break;
+        case 'actualizar':
+            //$controlador->procesarDatos();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $controlador->procesarDatos();
-                /*header("Location: ../Vista/registroEmpleado.php");*/
-                break;
-            case 'buscar':
-                $controlador->procesarBusqueda();
-                break;
-            case 'actualizar':
-                //$controlador->procesarDatos();
-                if($_SERVER['REQUEST_METHOD'] === 'POST'){
-                    $controlador->procesarDatos();
-                }elseif(isset($_GET['id'])){
-                    $empleado = $controlador->obtenerEmpleadoID($_GET['id']);
-                    include '../Vista/editarEmpleado.php';
-                }  
-                break;
-            case 'eliminar':
-                if(isset($_GET['id'])){
-                    $controlador->eliminarEmpleado($_GET['id']);
-                }
-                header("Location: ../Vista/buscarEmpleado.php");
-                break;
-            default:
-                header("Location: ../Vista/registroEmpleado.php");
-                break;
-        }
+            } elseif (isset($_GET['id'])) {
+                $empleado = $controlador->obtenerEmpleadoID($_GET['id']);
+                include '../Vista/editarEmpleado.php';
+            }
+            break;
+        case 'eliminar':
+            if (isset($_GET['id'])) {
+                $controlador->eliminarEmpleado($_GET['id']);
+            }
+            header("Location: ../Vista/buscarEmpleado.php");
+            break;
+        default:
+            header("Location: ../Vista/registroEmpleado.php");
+            break;
     }
-
-
-
-
-
-
-
-
+}

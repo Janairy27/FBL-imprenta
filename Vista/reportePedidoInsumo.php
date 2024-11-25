@@ -11,22 +11,22 @@ if ($busqueda && $valor1 && $valor2) {
 ?>
 
 <?php
-            header('Content-Type:application/xls');
-            header('Content-Disposition: attachment; filename=ReporteCantidadInsumos.xls');
+header('Content-Type:application/xls');
+header('Content-Disposition: attachment; filename=ReporteCantidadInsumos.xls');
 ?>
 <h1>Reporte de cantidad de insumos utilizados para productos finales</h1>
 <table class="table table-striped table-dark">
-<thead>
-    <tr class="table-light">
+    <thead>
+        <tr class="table-light">
             <th>Producto</th>
             <th>Cantidad de Insumos requeridos</th>
         </tr>
     </thead>
-<?php 
+    <?php
 
-    if(isset($resultados)):  ?>
-        <?php foreach($resultados as $inProd): ?>
-            <tr>                        
+    if (isset($resultados)):  ?>
+        <?php foreach ($resultados as $inProd): ?>
+            <tr>
                 <td><?php echo $inProd['productof']; ?></td>
                 <td><?php echo $inProd['cantidad']; ?></td>
             </tr>

@@ -44,5 +44,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['archivoRespaldo'])) {
     header('Location: ../Vista/respaldo&restauracion.php?message=' . urlencode($message) . '&type=' . $type);
     exit;
 }
-?>
-

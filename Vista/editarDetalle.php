@@ -5,12 +5,13 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
 
     $id = $_GET['id'] ?? null;
     if ($id) {
@@ -42,7 +43,7 @@ if (isset($_SESSION['usuario'])) {
     $controlador = new controladorDetalle();
     $pedidos = $controlador->obtenerPedidos();
 
-?>
+    ?>
 
     <!--vista para la actualización de detalle-->
     <div class="bloque">

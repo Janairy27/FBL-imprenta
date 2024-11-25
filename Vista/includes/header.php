@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +16,12 @@
     <!-- Tu archivo de estilos personalizado -->
     <link rel="stylesheet" href="../Vista/css/styles.css">
 </head>
+
 <body>
     <div class="contenedor-titulo">
         <h1 class="texto">FBL Servicios</h1>
         <h1 class="texto2">Impresión digital</h1>
     </div>
 </body>
+
 </html>

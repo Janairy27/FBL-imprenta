@@ -7,16 +7,17 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
 
     $controlador = new controladorProdFinal();
     $productos = $controlador->listarProdFinal();
-?>
+    ?>
     <!--Vista para mostrar el listad de productos finales y poder buscar, 
 mostrar todos (refrescar) ,agregar, eliminar y editar productos finales-->
     <div class="bloque">
@@ -39,7 +40,7 @@ mostrar todos (refrescar) ,agregar, eliminar y editar productos finales-->
                     </button>
 
                     <!--Botón para mostrar todos los registros (refescar)-->
-                    <button type="submit">Refrescar
+                    <button type="submit">Mostar todo
                         <img src="../Vista/img/refrescar.png" alt="Refrescar" style="width: 30px; height: 30px;">
                     </button>
 

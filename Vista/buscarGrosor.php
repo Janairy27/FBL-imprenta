@@ -5,16 +5,17 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
 
     $controlador = new controladorGrosor();
     $grosores = $controlador->listarGrosores();
-?>
+    ?>
     <!--Vista para mostrar el listado de grosores y poder buscar, 
 mostrar todos (refrescar) ,agregar, eliminar y editar grosores-->
 
@@ -59,7 +60,7 @@ mostrar todos (refrescar) ,agregar, eliminar y editar grosores-->
                         <th>Editar / Eliminar</th>
 
                     </tr>
-                    <?php if (isset($resultados)&& count($resultados) > 0): ?>
+                    <?php if (isset($resultados) && count($resultados) > 0): ?>
                         <?php foreach ($resultados as $grosor): ?>
                             <tr>
                                 <td><?php echo $grosor['cantGrosor']; ?></td>
@@ -72,11 +73,11 @@ mostrar todos (refrescar) ,agregar, eliminar y editar grosores-->
                                 </td>
                             </tr>
                         <?php endforeach ?>
-                        <?php else: ?>
-            <tr>
-                <td colspan="7" class="text-center">No se encontraron grosores.</td>
-            </tr>
-        <?php endif ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="7" class="text-center">No se encontraron grosores.</td>
+                        </tr>
+                    <?php endif ?>
                 </table>
 
                 <!--Botón para regresar al menu de administrador-->

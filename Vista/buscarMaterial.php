@@ -5,16 +5,17 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
 
     $controlador = new controladorMaterial();
     $materiales = $controlador->listarMateriales();
-?>
+    ?>
 
     <!--Vista para mostrar el listado de materiales y poder buscar, 
 mostrar todos (refrescar) ,agregar, eliminar y editar materiales -->

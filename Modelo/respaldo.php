@@ -1,4 +1,5 @@
 <?php
+
 /**Obtencion de todos los parametros de la base de datos */
 $host = 'localhost';
 $user = 'root';
@@ -10,7 +11,7 @@ $direccion = './Respaldos/';
 /**Verificar si la carpeta existe, si no existe se crea y se le asignan los 
  * permisos
  */
-if(!is_dir($direccion)){
+if (!is_dir($direccion)) {
     mkdir($direccion, 0777, true);
 }
 
@@ -24,15 +25,13 @@ $cmd = "mysqldump -u $user -p$pass $db > $copiaBD";
 /**Ejecución del comando */
 exec($cmd, $output, $retorno);
 /**Validar que el respaldo se realizo de forma exitosa y mostrar los mensajes correspondientes */
-if($retorno == 0){
+if ($retorno == 0) {
     $message = "Respaldo realizado con éxito.";
     $message_type = "success";
-}else{
+} else {
     echo "Sucedió un error al realizar el respaldo";
     $message = "Sucedio un problema al realizar el respaldo.";
     $message_type = "danger";
 }
 header("Location: ../Vista/respaldo&restauracion.php?message=" . urlencode($message) . "&type=" . $message_type);
 exit;
-
-?>

@@ -7,12 +7,13 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
 
 
     /**Traer los listados de cada tabala que se requiera
@@ -31,7 +32,7 @@ if (isset($_SESSION['usuario'])) {
     $tiposmedidas = $controlador->obtenerListaTiposMedidas();
     $transparencias = $controlador->obtenerListaTransparencias();
     $ubicaciones = $controlador->obtenerListaUbicaciones();
-?>
+    ?>
 
     <body data-context="registroInsumo">
         <!-- Mostrar alerta de error (si existe el parámetro 'error' en la URL) -->

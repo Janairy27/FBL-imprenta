@@ -5,15 +5,16 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
     $controlador = new controladorEmpleado();
     $empleados = $controlador->listarEmpleados();
-?>
+    ?>
 
     <!--Vista para mostrar el listad de empleados y poder buscar, 
 mostrar todos (refrescar) ,agregar, eliminar y editar empleados-->
@@ -42,7 +43,7 @@ mostrar todos (refrescar) ,agregar, eliminar y editar empleados-->
 
                     <!-- Botón para mostrar todos los empleados (refrescar) -->
                     <button type="submit">
-                    Mostrar todo
+                        Mostrar todo
                         <img src="../Vista/img/refrescar.png" alt="Refrescar" style="width: 30px; height: 30px;">
                     </button>
 
@@ -84,19 +85,19 @@ mostrar todos (refrescar) ,agregar, eliminar y editar empleados-->
                                 </td>
                             </tr>
                         <?php endforeach ?>
-                    
-                        <?php else: ?>
-            <tr>
-                <td colspan="9" class="text-center">No se encontraron empleado.</td>
-            </tr>
-        <?php endif ?>
+
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="9" class="text-center">No se encontraron empleado.</td>
+                        </tr>
+                    <?php endif ?>
                 </table>
 
 
             </div>
 
             <!-- Botón para regresar al menu de administrador-->
-            <button type="button" onclick="window.location.href='../Vista/administrador.php'" >
+            <button type="button" onclick="window.location.href='../Vista/administrador.php'">
                 Regresar
                 <img src="../Vista/img/regresar.png" alt="Regresar" style="width: 30px; height: 30px;">
             </button>

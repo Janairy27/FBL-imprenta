@@ -4,12 +4,13 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
 
     // Captura el ID pasado por la URL
     $id = $_GET['id'] ?? null;
@@ -32,13 +33,13 @@ if (isset($_SESSION['usuario'])) {
         echo "<p>Error: ID no proporcionado.</p>";
         exit;
     }
-?>
-<?php if (isset($_GET['error'])): ?>
-    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-        <strong>Error:</strong> <?php echo htmlspecialchars($_GET['error']); ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">Aceptar</button>
-    </div>
-<?php endif; ?>
+    ?>
+    <?php if (isset($_GET['error'])): ?>
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <strong>Error:</strong> <?php echo htmlspecialchars($_GET['error']); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">Aceptar</button>
+        </div>
+    <?php endif; ?>
     <!--Vista con el formulario para editar estado-->
     <div>
         <div class="bloque">
@@ -64,7 +65,7 @@ if (isset($_SESSION['usuario'])) {
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <?php
 } else {
     header("Location:login.php");

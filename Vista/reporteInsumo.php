@@ -21,12 +21,14 @@ if ($busqueda && $valor1) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reportes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
+
 <body>
     <h1>Reporte de insumos</h1>
     <table class="table table-striped table-dark">
@@ -39,7 +41,7 @@ if ($busqueda && $valor1) {
         <tbody>
             <?php if (isset($resultados) && !empty($resultados)): ?>
                 <?php foreach ($resultados as $insumo): ?>
-                    <tr> 
+                    <tr>
                         <td><?php echo htmlspecialchars($insumo['valor'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($insumo['cantinsumos'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
@@ -52,4 +54,5 @@ if ($busqueda && $valor1) {
         </tbody>
     </table>
 </body>
+
 </html>

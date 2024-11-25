@@ -5,12 +5,13 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
 
     // Captura el ID pasado por la URL
     $id = $_GET['id'] ?? null;
@@ -33,7 +34,7 @@ if (isset($_SESSION['usuario'])) {
         echo "<p>Error: ID no proporcionado.</p>";
         exit;
     }
-?>
+    ?>
 
     <!--Formulario para actualizacion de productos finales-->
     <div>

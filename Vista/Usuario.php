@@ -7,17 +7,18 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
 
     $controlador = new controladorUsuario();
     $usuarios = $controlador->listarUsuarios();
 
-?>
+    ?>
     <!--Vista para mostrar el listad de usuarios y poder buscar, 
 mostrar todos (refrescar) ,agregar, eliminar y editar usuarios-->
     <div class="bloque">
@@ -41,12 +42,13 @@ mostrar todos (refrescar) ,agregar, eliminar y editar usuarios-->
                     </button>
 
                     <!--Botón para mostrar todos los registros (refrescar)-->
-                    <button type="submit"> Actualizar
+                    <button type="submit"> Mostrar todo
                         <img src="../Vista/img/refrescar.png" alt="Refrescar" style="width: 30px; height: 30px;">
                     </button>
 
                     <!--Botón para registrar un nuevo usuario-->
                     <button type="button" onclick="window.location.href='../Vista/registroUsuario.php'">
+                        Agregar usuario
                         <img src="../Vista/img/mas.png" alt="Agregar" style="width: 30px; height: 30px;">
 
                     </button>

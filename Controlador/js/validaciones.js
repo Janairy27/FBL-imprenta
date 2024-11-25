@@ -417,8 +417,6 @@ function validarAcabado(event) {
   setTimeout(() => frmacabado.submit(), 1000);
 }
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("frmgrosor")
@@ -731,7 +729,8 @@ function validarBaja(event) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("frmPrese")
+  document
+    .getElementById("frmPrese")
     .addEventListener("submit", validarPresentacion);
 });
 
@@ -797,7 +796,8 @@ function validarMedida(event) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("frmTmedida")
+  document
+    .getElementById("frmTmedida")
     .addEventListener("submit", validarTipomedida);
 });
 
@@ -861,7 +861,6 @@ function validarTransparencia(event) {
   btne.style.display = ""; // Show "Enviando datos" message
   setTimeout(() => frmTransparencia.submit(), 1000);
 }
-
 
 function validarestado() {
   if (
@@ -1065,7 +1064,7 @@ document.addEventListener("DOMContentLoaded", function () {
         case "registroDetalle":
           window.location.href = "../Vista/registroDetalle.php";
           break;
-          case "registroEstado":
+        case "registroEstado":
           window.location.href = "../Vista/registroEstado.php";
           break;
         case "registroUsuario":
@@ -1098,15 +1097,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 function validarFormulario() {
-    const archivoRespaldo = document.getElementById('archivoRespaldo').value;
-    if (archivoRespaldo === '') {
-        alert('Por favor, seleccione un archivo de respaldo para restaurar.');
-        return false;
-    }
-    return true;
+  const archivoRespaldo = document.getElementById("archivoRespaldo").value;
+  if (archivoRespaldo === "") {
+    alert("Por favor, seleccione un archivo de respaldo para restaurar.");
+    return false;
+  }
+  return true;
 }
-
 
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

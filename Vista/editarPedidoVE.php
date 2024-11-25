@@ -5,14 +5,16 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
 
     $id = $_GET['id'] ?? null;
+    $error = $_GET['error'] ?? null;
     if ($id) {
         $query = "select pedido.serie, pedido.cant, pedido.nombrecliente, pedido.fechaPedido, 
         pedido.idproductoFinal, productoFinal.nombre as productof, pedido.idempleado, 
@@ -48,7 +50,8 @@ if (isset($_SESSION['usuario'])) {
     $empleados = $controlador->obtenerEmpleados();
     $estados = $controlador->obtenerEstados();
 
-?>
+    ?>
+
     <!--Formulario de actualización de pedidos-->
     <div class="bloque">
         <h2>Actualización de pedidos</h2>
@@ -124,7 +127,8 @@ if (isset($_SESSION['usuario'])) {
             <button type="button" onclick="window.location.href='../Vista/PedidoVE.php';">Cancelar
                 <img src="../Vista/img/cancelar.png" alt="Cancelar" style="width: 30px; height: 30px;">
             </button>
-            <script src="../Controlador/js/validaciones.js"></script>
+
+
         </form>
     </div>
 <?php

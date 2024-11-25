@@ -11,7 +11,7 @@ if (isset($_SESSION['usuario'])) {
         <p class="posicion">Cerrar sesión</p>
     </a>
 
-<?php
+    <?php
     // Captura el ID pasado por la URL
     $id = isset($_GET['id']) ? intval($_GET['id']) : null;
     $error = $_GET['error'] ?? null;
@@ -35,17 +35,17 @@ if (isset($_SESSION['usuario'])) {
         echo "<p>Error: ID no proporcionado.</p>";
         exit;
     }
-?>
+    ?>
 
 
-<!-- Mostrar alerta de error (si existe el parámetro 'error' en la URL) -->
+    <!-- Mostrar alerta de error (si existe el parámetro 'error' en la URL) -->
 
     <?php if (isset($_GET['error'])): ?>
-    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-        <strong>Error:</strong> <?php echo htmlspecialchars($_GET['error']); ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">Aceptar</button>
-    </div>
-<?php endif; ?>
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <strong>Error:</strong> <?php echo htmlspecialchars($_GET['error']); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">Aceptar</button>
+        </div>
+    <?php endif; ?>
 
 
 
@@ -88,7 +88,7 @@ if (isset($_SESSION['usuario'])) {
                     <img src="../Vista/img/cancelar.png" alt="Cancelar" style="width: 30px; height: 30px;">
                     Cancelar
                 </button>
-            
+
             </form>
         </div>
     </div>

@@ -7,17 +7,18 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
 
 
     $controlador = new controladorEstado();
     $estados = $controlador->listarEstados();
-?>
+    ?>
     <!--Vista para mostrar el listad de estados y poder buscar, 
 mostrar todos (refrescar) ,agregar, eliminar y editar estados-->
     <div class="bloque">
@@ -40,7 +41,7 @@ mostrar todos (refrescar) ,agregar, eliminar y editar estados-->
                     </button>
 
                     <!--Botón para mostrar todos los estados (refrescar) -->
-                    <button type="submit"> Refrescar
+                    <button type="submit"> Mostrar todo
                         <img src="../Vista/img/refrescar.png" alt="Refrescar" style="width: 30px; height: 30px;">
                     </button>
 

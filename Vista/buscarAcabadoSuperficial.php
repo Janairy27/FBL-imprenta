@@ -5,17 +5,18 @@ session_start();
 $user = $_SESSION['usuario'];
 if (isset($_SESSION['usuario'])) {
     echo "<h1 class='logout'>Usuario:  " . $user . "</h1>";
-    ?>
+?>
     <a href="../Vista/logout.php">
-     <img   src="../Vista/img/logout.png" class="image">
-     <p class=" posicion"> Cerrar sesion</p></a>
-<?php
-  
+        <img src="../Vista/img/logout.png" class="image">
+        <p class=" posicion"> Cerrar sesion</p>
+    </a>
+    <?php
+
 
 
     $controlador = new controladorAcabadoSuperficial();
     $acabados = $controlador->listarAcabados();
-?>
+    ?>
 
     <!--Vista para mostrar el listad de cabadaos y poder buscar, 
 mostrar todos (refrescar) ,agregar, eliminar y editar acbados-->
@@ -39,7 +40,7 @@ mostrar todos (refrescar) ,agregar, eliminar y editar acbados-->
 
                     <!--Botón para mostrar todos los registros (refescar)-->
                     <button type="submit">
-                    Mostrar todo
+                        Mostrar todo
                         <img src="../Vista/img/refrescar.png" alt="Refrescar" style="width: 30px; height: 30px;">
                     </button>
 
@@ -58,7 +59,7 @@ mostrar todos (refrescar) ,agregar, eliminar y editar acbados-->
                         <th>Editar / Eliminar</th>
 
                     </tr>
-                    <?php if (isset($resultados)&& count($resultados) > 0): ?>
+                    <?php if (isset($resultados) && count($resultados) > 0): ?>
                         <?php foreach ($resultados as $acabado): ?>
                             <tr>
                                 <td><?php echo $acabado['nomAcabado']; ?></td>
@@ -69,11 +70,11 @@ mostrar todos (refrescar) ,agregar, eliminar y editar acbados-->
                                 </td>
                             </tr>
                         <?php endforeach ?>
-                        <?php else: ?>
-            <tr>
-                <td colspan="7" class="text-center">No se encontraron acabados superficiales.</td>
-            </tr>
-        <?php endif ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="7" class="text-center">No se encontraron acabados superficiales.</td>
+                        </tr>
+                    <?php endif ?>
                 </table>
 
                 <!--Botón para regresar a la ventana del index del administrador -->

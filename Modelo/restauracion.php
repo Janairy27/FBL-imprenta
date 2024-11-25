@@ -93,6 +93,3 @@ class Restauracion
         return $this->mensajes;
     }
 }
-
-
-?>
